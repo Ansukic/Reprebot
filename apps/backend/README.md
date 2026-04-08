@@ -78,33 +78,23 @@ Y si todo está funcionando correctamente, verás que fastapi está ejecutandose
 
   
 
-/apps/backend
-
-  
-
-│
-├── /app
-│ ├── /api
-│ │ ├── chat.py
-│ │ ├── whatsapp.py
-│ │ └── health.py
-│ │
-│ ├── /services (aquí vive la lógica de cada servicio)
-│ │ ├── chat_service.py
-│ │ ├── ai_client.py
-│ │ └── whatsapp_service.py
-│ │
-│ ├── /core (aquí van las configuraciones)
-│ │ └── config.py
-│ │
-│ ├── /models (aquí se definen las estructuras de datos con las que se trabaja y modela el back)
-│ │ └── schemas.py
-│ │
-│ └── main.py
-│
-├── requirements.txt
-└── README.md
-
+- **apps/backend**
+  - **app/**
+    - **api/** *(routes / endpoints)*
+      - chat.py
+      - whatsapp.py
+      - health.py
+    - **services/** *(business logic of each service)*
+      - chat_service.py
+      - ai_client.py
+      - whatsapp_service.py
+    - **core/** *(configuration and core settings)*
+      - config.py
+    - **models/** *(data structures and schemas)*
+      - schemas.py
+    - main.py *(application entry point)*
+  - requirements.txt
+  - README.md
   
   
 
