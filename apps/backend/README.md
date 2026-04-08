@@ -1,5 +1,61 @@
 #  ¡Bienvenido al Backend!
+¡Hola!
 
+Esta es la sección del proyecto encargada del backend, para esto utilizamos fastapi, un framework de python que permite hacer backend bueno, bonito y rápido.
+
+
+¡Te recomendamos leer estas secciones antes de hacer cambios sobre el repositorio!
+
+
+  ## Algunas notas sobre código "decente"
+  Antes de hablar sobre la distribución del proyecto, queremos hablar de algunas formas de nombrar cosas útiles del PEP 8(la guía de estilos de python https://peps.python.org/pep-0008/).
+
+## Para los archivos
+
+Usa snake_case
+```
+chat_service.py
+chat_message.py
+whatsapp_service.py
+```
+Evita:
+```
+chatService.py
+ChatService.py
+chat-service.py
+```
+## Classes
+
+Usa PascalCase
+```
+class ChatMessage:
+class ChatResponse:
+class WhatsAppMessage:
+```
+
+## Funciones
+
+Usa snake_case
+```
+def answer_message():
+def send_whatsapp_message():
+```
+
+## Variables
+
+Usa snake_case
+```
+user_message = "hello"
+ai_response = "hi"
+```
+## Constantes
+
+Usa UPPER_CASE
+```
+API_URL = "http://..."
+TIMEOUT_SECONDS = 30
+```
+  
   
 
 ##  ¿Cómo Iniciar el proyecto?
@@ -97,3 +153,5 @@ Esta es la carpeta que continen los modelos de datos que usamos en los servicios
   
 
 Esta es la carpeta que contiene la lógica real de cada una de las cosas que hacemos, puede que un solo servicio sea usado por varios endpoints para realizar alguna acción.
+
+
