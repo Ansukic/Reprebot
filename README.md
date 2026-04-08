@@ -10,6 +10,9 @@ Ahora mismo este proyecto almacena el backend y el frontend, el backend está co
 
 Dentro de cada proyecto hay un README, dónde intentamos explicar la estructura del proyecto, por favor leelo para sincronizarte con nosotrxs.
 
+
+## Finalmente, recuerda no hacer cambios directos sobre main para evitar conflictos.
+
 ¡Gracias!
 
 
