@@ -1,12 +1,12 @@
-'''
-/chat 
+"""
+/chat
 Ruta usada para realizar peticiones a la IA.
-'''
+"""
 
 from fastapi import APIRouter
-from ..models import chat_message
-from ..services.chat_service import answer
 
+from app.models import chat_message
+from app.services.chat_service import answer
 
 router = APIRouter()
 

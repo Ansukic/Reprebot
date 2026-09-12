@@ -1,11 +1,12 @@
-'''
-/health 
-Ruta usada para realizar validaciones sobre los routers en /api/.
-'''
+"""
+/health
+Ruta usada para verificar que el backend está arriba.
+"""
 
 from fastapi import APIRouter
 
 router = APIRouter()
+
 
 @router.get("/health")
 def health():

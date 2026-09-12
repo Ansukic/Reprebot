@@ -1,24 +1,24 @@
-#  ¡Reprebot!
+# ¡Reprebot!
 
-  
+Este repositorio almacena el proyecto de Reprebot de Sistemas (Sede Bogotá), mantenido por el Consejo de Estudiantes de Sistemas (CEIS).
 
-Este repositorio tiene como objetivo almacenar el proyecto de Reprebot de sistemas (Sede Bogotá).
+El proyecto es un monorepo con dos aplicaciones:
 
+- `apps/backend` — API construida con FastAPI (Python)
+- `apps/frontend` — por definir
 
-Ahora mismo este proyecto almacena el backend y el frontend, el backend está construído con fastapi y no hemos hecho nada del front, contamos con tu ayuda para hacer esto algo bonito!
+Cada aplicación tiene su propio README con la estructura y las instrucciones de instalación. Léelo antes de hacer cambios.
 
+## Contribuir
 
-Dentro de cada proyecto hay un README, dónde intentamos explicar la estructura del proyecto, por favor leelo para sincronizarte con nosotrxs.
+No hagas push directo a `main`. El flujo es:
 
+1. Crea una rama desde `main` (`git checkout -b mi-cambio`)
+2. Haz tus cambios y commitea
+3. Abre un Pull Request hacia `main`
 
-## Finalmente, recuerda no hacer cambios directos sobre main para evitar conflictos.
+Más detalles en [CONTRIBUTING.md](CONTRIBUTING.md).
 
-¡Gracias!
+## Licencia
 
-
-
-
-Atentamente:
-
-Consejo De Estudiantes de Sistemas
-CEIS
+MIT. Ver [LICENSE](LICENSE).
