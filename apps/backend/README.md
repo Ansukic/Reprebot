@@ -1,54 +1,84 @@
-# ¡Bienvenido al Backend!
+# Backend de Reprebot
 
-API de Reprebot construida con FastAPI.
+Microservicio FastAPI para consultar documentos de la Universidad Nacional de Colombia con RAG.
 
 ## Requisitos
 
 - Python 3.11 o superior
+- Una API key de Groq
 
-## Cómo iniciar
-
-Desde esta carpeta (`apps/backend`):
+## Configuración
 
 ```bash
-python -m venv venv
-source venv/bin/activate
+cd apps/backend
+cp .env.example .env
+```
+
+Edite `.env`:
+
+```env
+GROQ_API_KEY=su-key
+GROQ_CHAT_MODEL=openai/gpt-oss-120b
+EMBEDDINGS_MODEL=jinaai/jina-embeddings-v2-base-es
+CORS_ORIGINS=*
+ADMIN_TOKEN=
+```
+
+La key real vive solo en `.env`. Ese archivo está ignorado por Git. `fastembed` descarga el modelo de embeddings localmente en la primera ingesta.
+
+## Ejecutar
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-fastapi dev
+uvicorn app.main:app --reload
 ```
 
-Importante: `fastapi dev` debe ejecutarse desde `apps/backend/`, porque los imports son relativos a la carpeta `app/`.
+Ejecute los comandos desde `apps/backend/`. La interfaz de prueba queda en http://127.0.0.1:8000/ y la documentación en http://127.0.0.1:8000/docs.
 
-Si todo funciona, la documentación interactiva está en http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc
+## API
 
-## Estructura del proyecto
+| Método | Ruta | Uso |
+| --- | --- | --- |
+| `GET` | `/api/health` | Estado, modelo y conteo de documentos/chunks |
+| `POST` | `/api/chat` | Pregunta RAG; devuelve respuesta y fuentes |
+| `POST` | `/api/search` | Recupera fuentes sin llamar al LLM |
+| `POST` | `/api/documents` | Ingresa un PDF, TXT o MD mediante `multipart/form-data` |
+| `GET` | `/api/documents` | Lista documentos indexados |
+| `DELETE` | `/api/documents/{id}` | Borra un documento y sus chunks |
 
+Ejemplo:
+
+```bash
+curl -F 'file=@reglamento.pdf' http://127.0.0.1:8000/api/documents
+
+curl -X POST http://127.0.0.1:8000/api/chat \
+  -H 'Content-Type: application/json' \
+  -d '{"question":"¿Qué dice el reglamento sobre la representación estudiantil?"}'
 ```
-apps/backend
-├── app/
-│   ├── api/          # endpoints: solo exponen rutas y validan entrada
-│   │   ├── chat.py
-│   │   ├── health.py
-│   │   └── whatsapp.py
-│   ├── models/       # esquemas de datos (Pydantic)
-│   │   └── chat_message.py
-│   ├── services/     # lógica de negocio
-│   │   └── chat_service.py
-│   └── main.py       # entry point
-├── requirements.txt
-└── README.md
+
+Si `ADMIN_TOKEN` tiene valor, las operaciones de ingesta y borrado requieren `X-Admin-Token`. La autenticación queda desactivada cuando está vacío, útil para desarrollo local. Para integrar el foro, configure `CORS_ORIGINS` con sus orígenes reales y active el token.
+
+## Estructura
+
+```text
+app/
+├── api/
+│   ├── chat.py
+│   ├── documents.py
+│   ├── health.py
+│   └── search.py
+├── core/config.py
+├── models/chat_message.py
+├── services/
+│   ├── ai_client.py
+│   ├── chunker.py
+│   ├── embeddings.py
+│   ├── ingest.py
+│   ├── rag.py
+│   └── store.py
+└── main.py
 ```
 
-## Convenciones de código
-
-Seguimos PEP 8, verificado con `ruff`:
-
-- Archivos y funciones: `snake_case` (`chat_service.py`, `answer_message()`)
-- Clases: `PascalCase` (`ChatMessage`, `ChatResponse`)
-- Constantes: `UPPER_CASE` (`API_URL`, `TIMEOUT_SECONDS`)
-
-## Notas de diseño
-
-- `api/` no contiene lógica de negocio: solo rutas y validación. La lógica va en `services/`
-- `models/` contiene los esquemas Pydantic que comparten api y services
-- `chat_service.answer` es un echo por ahora; falta la conexión con el modelo de IA (ver TODO en el código)
+El índice numpy y sus metadatos se guardan en `data/`, que no se versiona.

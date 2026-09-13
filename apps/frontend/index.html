@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reprebot — CEIS UNAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">▞</span>
+      <h1>reprebot<span class="brand-dot">_</span></h1>
+      <span class="brand-sub">ceis · unal · rag</span>
+    </div>
+    <div class="health" id="health" title="estado del servicio">
+      <span class="health-dot" id="health-dot"></span>
+      <span class="health-text" id="health-text">conectando…</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" id="tab-chat" role="tab" aria-selected="true">chat</button>
+    <button class="tab" id="tab-docs" role="tab" aria-selected="false">documentos</button>
+  </nav>
+
+  <main>
+    <section class="view active" id="view-chat">
+      <div class="chat-wrap">
+        <div class="chat-log" id="chat-log" aria-live="polite"></div>
+        <form class="chat-input" id="chat-form">
+          <span class="prompt" aria-hidden="true">❯</span>
+          <input type="text" id="chat-question" placeholder="pregunta sobre la unal…" autocomplete="off" autofocus>
+          <button type="submit" id="chat-send">enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="view" id="view-docs">
+      <div class="docs-wrap">
+        <div class="dropzone" id="dropzone">
+          <p class="drop-big">suelta aquí un documento</p>
+          <p class="drop-small">pdf · txt · md · máx 20MB</p>
+          <label class="drop-btn" for="file-input">o elige un archivo</label>
+          <input type="file" id="file-input" accept=".pdf,.txt,.md" hidden>
+          <p class="drop-status" id="upload-status" hidden></p>
+        </div>
+        <div class="doc-list" id="doc-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

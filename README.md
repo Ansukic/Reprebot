@@ -5,7 +5,7 @@ Este repositorio almacena el proyecto de Reprebot de Sistemas (Sede Bogotá), ma
 El proyecto es un monorepo con dos aplicaciones:
 
 - `apps/backend` — API construida con FastAPI (Python)
-- `apps/frontend` — por definir
+- `apps/frontend` — interfaz de prueba en HTML, CSS y JavaScript vanilla
 
 Cada aplicación tiene su propio README con la estructura y las instrucciones de instalación. Léelo antes de hacer cambios.
 
