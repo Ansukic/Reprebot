@@ -1,16 +1,16 @@
-'''
-/chat 
-Ruta usada para realizar peticiones a la IA.
-'''
+"""
+/api/chat
+Pregunta al RAG: recupera contexto y genera respuesta con fuentes.
+"""
 
 from fastapi import APIRouter
-from ..models import chat_message
-from ..services.chat_service import answer
 
+from app.models.chat_message import ChatRequest, ChatResponse
+from app.services import rag
 
 router = APIRouter()
 
 
-@router.post("/chat")
-def chat(message: chat_message.ChatRequest):
-    return answer(message)
+@router.post("/chat", response_model=ChatResponse)
+def chat(req: ChatRequest):
+    return rag.answer_question(req.question, req.k)

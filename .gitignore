@@ -3,29 +3,65 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+coverage.xml
 
 # Virtual environment
 venv/
+.venv/
 .env
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-
-# Logs
-*.log
+.env.*
+!.env.example
 
 # Python packaging
 build/
 dist/
 *.egg-info/
 
+# Node / Frontend
+node_modules/
+.npm/
+.pnpm-debug.log*
+.yarn/
+.yarn-integrity
+.next/
+.nuxt/
+.output/
+dist/
+.vite/
+.turbo/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
 # Testing
 .coverage
 htmlcov/
+.pytest_cache/
 
 # FastAPI
 *.sqlite3
+*.db
+
+# Reprebot: datos del store vectorial y secrets
+apps/backend/data/
+apps/backend/.env
+
+# Model caches
+local_cache/
+.cache/
